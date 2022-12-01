@@ -60,7 +60,7 @@ class InsightEnvironment {
         project.registerService(KotlinCompilerSettings::class.java)
         project.registerService(KotlinLibraryToSourceAnalysisStateComponent::class.java)
 
-//        project.registerService(KotlinAsJavaSupport::class.java, IDEKotlinAsJavaSupport(project))
+        project.registerService(KotlinAsJavaSupport::class.java, IDEKotlinAsJavaSupport(project))
     }
 
     fun addSourceFile(sourceFile: File) {

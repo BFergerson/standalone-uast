@@ -14,8 +14,8 @@ object Main {
         val env = InsightEnvironment()
         args.map { File(it) }.forEach { env.addSourceFile(it) }
 
-        val uastFile = env.getPsiFile(File(args.first()))!!.toUElement() as? UFile
-        val methods = uastFile!!.classes.flatMap { it.methods.toList() }
-        println(methods)
+        val uastFile = env.getPsiFile(File(args.first()))!!.toUElement() as UFile
+        val classes = uastFile.classes
+        println(classes)
     }
 }
