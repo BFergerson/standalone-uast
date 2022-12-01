@@ -18,6 +18,8 @@ import com.intellij.psi.PsiManager
 import com.intellij.psi.PsiNameHelper
 import com.intellij.psi.impl.PsiNameHelperImpl
 import com.intellij.psi.impl.file.impl.JavaFileManager
+import org.jetbrains.kotlin.asJava.KotlinAsJavaSupport
+import org.jetbrains.kotlin.idea.caches.resolve.IDEKotlinAsJavaSupport
 import org.jetbrains.kotlin.idea.compiler.configuration.KotlinCommonCompilerArgumentsHolder
 import org.jetbrains.kotlin.idea.compiler.configuration.KotlinCompilerSettings
 import org.jetbrains.kotlin.idea.project.KotlinLibraryToSourceAnalysisStateComponent
@@ -58,7 +60,7 @@ class InsightEnvironment {
         project.registerService(KotlinCompilerSettings::class.java)
         project.registerService(KotlinLibraryToSourceAnalysisStateComponent::class.java)
 
-        //project.registerService(KotlinAsJavaSupport::class.java, IDEKotlinAsJavaSupport(project))
+//        project.registerService(KotlinAsJavaSupport::class.java, IDEKotlinAsJavaSupport(project))
     }
 
     fun addSourceFile(sourceFile: File) {
