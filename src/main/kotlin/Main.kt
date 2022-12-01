@@ -8,15 +8,13 @@ object Main {
 
     @JvmStatic
     fun main(args2: Array<String>) {
-        val args = arrayOf("/tmp/project/TestClass.kt")
+//        val args = arrayOf("./testData/TestClass.java") //works
+        val args = arrayOf("./testData/TestClass.kt") //fails
 
         val env = InsightEnvironment()
-        args.map { File(it) }.forEach {
-            env.addSourceFile(it)
-        }
+        args.map { File(it) }.forEach { env.addSourceFile(it) }
 
-        val psiFile = env.getPsiFile(File(args.first()))!!
-        val uastFile = psiFile.toUElement() as? UFile
+        val uastFile = env.getPsiFile(File(args.first()))!!.toUElement() as? UFile
         val methods = uastFile!!.classes.flatMap { it.methods.toList() }
         println(methods)
     }
