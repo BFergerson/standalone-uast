@@ -6,7 +6,6 @@ import com.intellij.openapi.Disposable
 import com.intellij.openapi.extensions.ExtensionPoint
 import com.intellij.openapi.module.EmptyModuleManager
 import com.intellij.openapi.module.ModuleManager
-import com.intellij.openapi.project.Project
 import com.intellij.openapi.roots.ProjectFileIndex
 import com.intellij.openapi.roots.ProjectRootManager
 import com.intellij.openapi.roots.impl.DirectoryIndex
@@ -31,7 +30,6 @@ class InsightEnvironment {
     private val disposable = Disposable {}
     private val applicationEnvironment = InsightApplicationEnvironment(disposable)
     private val projectEnvironment = JavaCoreProjectEnvironment(disposable, applicationEnvironment)
-    val project = projectEnvironment.project
 
     init {
         val project = projectEnvironment.project
@@ -68,17 +66,9 @@ class InsightEnvironment {
         projectEnvironment.addSourcesToClasspath(root)
     }
 
-    fun addJarToClasspath(jar: File) {
-        projectEnvironment.addJarToClassPath(jar)
-    }
-
     fun getPsiFile(file: File): PsiFile? {
         return PsiManager.getInstance(projectEnvironment.project).findFile(
             applicationEnvironment.localFileSystem.findFileByIoFile(file)!!
         )
-    }
-
-    fun getProject(): Project {
-        return projectEnvironment.project
     }
 }
